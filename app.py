@@ -122,9 +122,9 @@ with tab4:
     st.write(f"High-value = top {int((1 - HIGH_VALUE_QUANTILE) * 100)}% of balances "
              f"(>= EUR {full['Balance'].quantile(HIGH_VALUE_QUANTILE):,.0f}).")
     sample = f.sample(min(len(f), 3000), random_state=1).copy()
-sample["Status"] = sample["Exited"].map({0: "Retained", 1: "Churned"})
-fig = px.scatter(sample, x="EstimatedSalary", y="Balance", color="Status", opacity=0.5,
-                 title="Salary vs balance (sample of up to 3,000)")
+    sample["Status"] = sample["Exited"].map({0: "Retained", 1: "Churned"})
+    fig = px.scatter(sample, x="EstimatedSalary", y="Balance", color="Status", opacity=0.5,
+                     title="Salary vs balance (sample of up to 3,000)")
     st.plotly_chart(fig, use_container_width=True)
     st.subheader("Drill-down")
     dim = st.selectbox("Break high-balance customers down by", ["Geography", "AgeGroup", "TenureGroup", "Activity", "Gender"])
